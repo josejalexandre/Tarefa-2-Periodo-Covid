@@ -1,28 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <caixas @acrescentar="adicionarTarefa($event)"/>
+    <lista :tarefas="tarefas" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Caixas from "./components/Caixas.vue"
+import Lista from "./components/Lista.vue"
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Caixas,
+    Lista
+  },
+  data: function() {
+    return {
+      tarefas: []
+    };
+  },
+  methods: {
+    adicionarTarefa: function(event) {
+      this.tarefas.push({descricao: event.texto});
+    }
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
